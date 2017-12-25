@@ -1,0 +1,17 @@
+$productCatalog=tacobellProductCatalog
+$contentCatalog=tacobellContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$defaultLanguage=en
+$storeUid=tacobell
+$siteUid=tacobell
+$webServiceSiteUid=$siteUidWS
+
+INSERT_UPDATE CxConfig;code[unique=true];minAffinity;actionResultMaxRepeat;userChangedActions
+;$siteUid;0.5;1;RECALCULATE,ASYNC_PROCESS
+
+#default ConfigurableUrlVoter configuration
+INSERT_UPDATE CxUrlVoterConfig;cxConfig(code)[unique=true];code[unique=true];urlRegexp;actions
+;$siteUid;default;.*;LOAD
+
+INSERT_UPDATE BaseSite;uid[unique=true];cxConfig(code);
+;$siteUid;$siteUid;

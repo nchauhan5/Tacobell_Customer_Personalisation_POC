@@ -1,0 +1,101 @@
+/*
+##	Future Availability link and pop-up
+*****************/
+
+.futureStockLink {
+    float: right;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 3px 2px 0 0;
+}
+div.zoom_lightbox.futureStockPopup{
+    border: 1px solid #BDCDBB;
+    border-radius: 3px 3px 3px 3px;
+    margin: 40px 10px 10px;
+    overflow: hidden;
+    width: 420px;
+}
+div.zoom_lightbox.futureStockPopup .prod_list .thumb img {
+    margin: 0 10px;
+    padding: 10px;
+    border: 1px solid #BACAD5;
+}
+div.zoom_lightbox.futureStockPopup .prod_list {
+    border: none;
+    padding-top: 0;
+    margin: 20px 0 10px;
+}
+
+
+div.zoom_lightbox.futureStockPopup .prod_list .details{
+    width: 275px;
+}
+
+
+div.zoom_lightbox.futureStockPopup .popup_header{
+    border-radius: 3px 3px 3px 3px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 10px 10px 10px 12px;
+    padding: 5px 10px;
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    text-shadow: 0 -1px 1px #333333;
+
+
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#717171), to(#afafaf));
+    background: -webkit-linear-gradient(top, #afafaf, #717171);
+    background: -moz-linear-gradient(top, #afafaf, #717171);
+    background: -ms-linear-gradient(top, #afafaf, #717171);
+    background: -o-linear-gradient(top, #afafaf, #717171);
+}
+div.zoom_lightbox.futureStockPopup .pd_name {
+    color: #356F70;
+    font-size: 16px;
+}
+div.zoom_lightbox.futureStockPopup table {
+    margin: 10px 10px 20px;
+    border: 1px solid #c0c9d0;
+    width: 400px !important;
+}
+div.zoom_lightbox.futureStockPopup table tr td, .zoom_lightbox table tr th {
+    padding: 4px 10px 4px 15px;
+    width:50%;
+}
+div.zoom_lightbox.futureStockPopup table th {
+    font-size: 12px;
+    font-weight: bold;
+    vertical-align: middle;
+}
+div.zoom_lightbox.futureStockPopup table th {
+    background-color: #EEEEEE;
+    height: 20px;
+    padding-top: 5px;
+}
+
+div.zoom_lightbox.futureStockPopup table th,
+div.zoom_lightbox.futureStockPopup table td {
+    border:0;
+}
+
+div.zoom_lightbox.futureStockPopup table th:first-child,
+div.zoom_lightbox.futureStockPopup table td:first-child {
+    border:0;
+    border-right: 1px solid #c0c9d0;
+}
+
+
+div.zoom_lightbox.futureStockPopup table td,
+div.zoom_lightbox.futureStockPopup table td:first-child {
+    border-top: 1px solid #c0c9d0;
+}
+
+div.zoom_lightbox.futureStockPopup .prod_list .thumb {
+    width: auto;
+}
+
+div.zoom_lightbox.futureStockPopup .last {
+    width: auto;
+}

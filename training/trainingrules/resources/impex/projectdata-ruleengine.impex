@@ -1,0 +1,105 @@
+INSERT_UPDATE DroolsKIEModule;name[unique=true];mvnGroupId;mvnArtifactId;mvnVersion;version;ruleType(code);active
+;userSegmentRule-module;hybris-rules;userSegmentRules;1.0.0;-1;USER_SEGMENT_RULE;true
+
+INSERT_UPDATE DroolsKIEBase;name[unique=true];kieModule(name)[unique=true];equalityBehavior(code);eventProcessingMode(code)
+;userSegmentRule-production;userSegmentRule-module;EQUALITY;STREAM
+
+INSERT_UPDATE DroolsKIESession;name[unique=true];kieBase(name)[unique=true];sessionType(code)
+;userSegmentRule-session-production;userSegmentRule-production;STATELESS
+
+INSERT_UPDATE DroolsRuleEngineContext;name[unique=true];kieSession(name);ruleFiringLimit
+;userSegmentRule-production-context;userSegmentRule-session-production;200;
+
+UPDATE DroolsKIEModule;name[unique=true];defaultKIEBase(name)
+;userSegmentRule-module;userSegmentRule-production
+
+UPDATE DroolsKIEBase;name[unique=true];defaultKIESession(name)
+;userSegmentRule-production;userSegmentRule-session-production
+
+
+
+
+##Create Custom conditions & actions
+$lang=en
+
+###### Add user to segment ACTION definition STARTS ############ 
+
+INSERT_UPDATE RuleActionDefinitionCategory; id[unique=true];name[lang=$lang];priority
+;assignUserToSegmentActionCategory; Segment;10000
+
+INSERT_UPDATE RuleActionDefinition;id[unique=true];name[lang=$lang];priority;breadcrumb[lang=$lang];translatorId;translatorParameters;categories(id)
+;y_assign_user_to_segment_action;Assign user to Segment Action;1;Add user to Segment : {segment};ruleExecutableActionTranslator;actionId->assignUserToSegmentAction;assignUserToSegmentActionCategory
+
+INSERT_UPDATE RuleActionDefinitionParameter;definition(id)[unique=true];id[unique=true];priority;name[lang=$lang];description[lang=$lang];type;value;required[default=true]
+;y_assign_user_to_segment_action;segment;1;User segment;User segment to which the user is to be associated;ItemType(CxSegment);;true
+
+######## Add user to segment ACTION definition ENDS ############
+
+###### CONDITION 1 STARTS: check if user age<=[maximum_age] && Gender=[gender] && account create before [creationdate] ############
+ 
+INSERT_UPDATE RuleConditionDefinitionCategory;id[unique=true];name[lang=$lang];priority
+;assignUserToSegmentConditionCategory;Segment;1600
+
+INSERT_UPDATE RuleConditionDefinition;id[unique=true];name[lang=$lang];priority;breadcrumb[lang=$lang];allowsChildren;translatorId;translatorParameters;categories(id)
+;y_segment_rule_condition;Account Condition;1600;Users {age_operator} {age} AND gender {gender_operator} {gender} will be added to the segment;false;assignUserToSegmentRuleTranslator;;assignUserToSegmentConditionCategory
+
+INSERT_UPDATE RuleConditionDefinitionParameter;definition(id)[unique=true];id[unique=true];priority;name[lang=$lang];description[lang=$lang];type;value;required[default=true]
+;y_segment_rule_condition;age_operator;4;Operator;Operator to compare the age required for qualifying segment;Enum(de.hybris.platform.ruledefinitions.AmountOperator);"""LESS_THAN_OR_EQUAL""";;
+;y_segment_rule_condition;age;3;Eligible Age;Maximum Age eligible for the segment;java.lang.Integer;;true
+
+INSERT_UPDATE RuleConditionDefinitionParameter;definition(id)[unique=true];id[unique=true];priority;name[lang=$lang];description[lang=$lang];type;value;required[default=true]
+;y_segment_rule_condition;gender_operator;2;Operator;Operator to compare the age required for qualifying segment;Enum(de.hybris.platform.ruledefinitions.AmountOperator);"""LESS_THAN_OR_EQUAL""";;
+;y_segment_rule_condition;gender;1;Eligible Gender;Eligible gender for the segment;java.lang.String;;true
+
+#INSERT_UPDATE RuleConditionDefinitionParameter;definition(id)[unique=true];id[unique=true];priority;name[lang=$lang];description[lang=$lang];type;value;required[default=true]
+#;y_segment_rule_condition;creationdate;1;Eligible Creation Date;Eligible after creation date for the segment;java.util.Date;;true
+
+###### CONDITION 1 ENDS ##########
+
+###### CONDITION 2 STARTS: check if user the user browses to some specific category ############
+INSERT_UPDATE RuleConditionDefinition;id[unique=true];name[lang=$lang];priority;breadcrumb[lang=$lang];allowsChildren;translatorId;translatorParameters;categories(id)
+;y_segment_rule_condition_browse_to_specific_category;User browses to specific category;1600;Users will be added to the segment if user browses to categories: {categories};false;assignUserToSegmentRuleBrowseCategoriesTranslator;;assignUserToSegmentConditionCategory
+
+INSERT_UPDATE RuleConditionDefinitionParameter;definition(id)[unique=true];id[unique=true];priority;name[lang=$lang];description[lang=$lang];type;value;required[default=true]
+;y_segment_rule_condition_browse_to_specific_category;categories;3;Eligible Categories;Eligible categories for the segment;List(ItemType(Category));;true
+
+###### CONDITION 2 ENDS ##########
+
+###### CONDITION 3 STARTS: check if specific product added to cart. This is already covered OOB in y_qualifying_products############
+###### CONDITION 3 ENDS ##########
+
+###### CONDITION 4 STARTS: Collection of products And Collection of Category. This can be combination of corresponding conditions############
+###### CONDITION 4 ENDS ##########
+
+###### CONDITION 5 STARTS: order value after submit during order creation ############
+INSERT_UPDATE RuleConditionDefinition;id[unique=true];name[lang=$lang];priority;breadcrumb[lang=$lang];allowsChildren;translatorId;translatorParameters;categories(id)
+;y_segment_rule_condition_order_total;User places order of value total;1600;User places order of {operator} {ordervalue};false;assignUserToSegmentRuleOrderValueGreaterThanTranslator;;assignUserToSegmentConditionCategory
+
+INSERT_UPDATE RuleConditionDefinitionParameter;definition(id)[unique=true];id[unique=true];priority;name[lang=$lang];description[lang=$lang];type;value;required[default=true]
+;y_segment_rule_condition_order_total;operator;1100;Operator;Operator to compare the order total value;Enum(de.hybris.platform.ruledefinitions.AmountOperator);"""GREATER_THAN_OR_EQUAL""";;
+;y_segment_rule_condition_order_total;value;1000;Order total value;Map of currency and value of the cart total to be used;Map(ItemType(Currency),java.math.BigDecimal);;;rulePositiveNumberParameterValidator
+
+###### CONDITION 5 ENDS ##########
+
+
+INSERT_UPDATE RuleConditionDefinitionRuleTypeMapping;definition(id)[unique=true];ruleType(code)[unique=true]
+;y_segment_rule_condition;SegmentSourceRule;
+;y_qualifying_products;SegmentSourceRule
+;y_qualifying_categories;SegmentSourceRule
+;y_segment_rule_condition_order_total;SegmentSourceRule
+;y_segment_rule_condition_browse_to_specific_category;SegmentSourceRule
+;y_group;SegmentSourceRule
+;y_container;SegmentSourceRule
+;y_rule_executed;SegmentSourceRule
+
+INSERT_UPDATE RuleActionDefinitionRuleTypeMapping;definition(id)[unique=true];ruleType(code)[default=SegmentSourceRule][unique=true]
+;y_assign_user_to_segment_action;SegmentSourceRule
+
+INSERT_UPDATE RuleToEngineRuleTypeMapping;ruleType(code)[unique=true];engineRuleType(code)[default=USER_SEGMENT_RULE]
+;SegmentSourceRule;
+
+
+INSERT_UPDATE CronJob	;code[unique=true]			        ;job(code)					        ;singleExecutable	;sessionLanguage(isocode)   ;sessionUser(uid)
+						;removeUserFromSegmentsJob			;removeUserFromSegmentsJob			;false				;en                         ;admin
+
+### Promotion Engine Ends #####

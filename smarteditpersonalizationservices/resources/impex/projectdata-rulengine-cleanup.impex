@@ -1,0 +1,28 @@
+Remove RuleActionDefinitionCategory[batchmode=true];id[unique=true]
+;Segment
+;assignUserToSegmentActionCategory
+
+Remove RuleActionDefinition;id[unique=true]
+;y_assign_user_to_segment_action
+
+Remove RuleActionDefinitionParameter[batchmode=true];definition(id)[unique=true]
+;y_assign_user_to_segment_action
+
+Remove RuleConditionDefinitionParameter[batchmode=true];definition(id)[unique=true]
+;y_segment_rule_condition
+;y_segment_rule_condition_browse_to_specific_category
+;y_segment_rule_condition_order_total
+
+Remove RuleConditionDefinitionCategory;id[unique=true]
+;assignUserToSegmentConditionCategory
+;segementCustomCondition
+
+Remove RuleConditionDefinition;id[unique=true]
+;y_segment_rule_condition
+;y_segemnt_rule_condition
+
+Remove RuleConditionDefinitionRuleTypeMapping[batchmode=true];ruleType(code)[unique=true]
+;SegmentSourceRule
+
+Remove RuleActionDefinitionRuleTypeMapping[batchmode=true];ruleType(code)[default=SegmentSourceRule][unique=true]
+;SegmentSourceRule

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- [y] hybris Platform Copyright (c) 2017 SAP SE or an SAP affiliate company. All rights reserved. This software is the confidential 
+	and proprietary information of SAP ("Confidential Information"). You shall not disclose such Confidential Information and shall use 
+	it only in accordance with the terms of the license agreement you entered into with SAP. -->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/util
+           http://www.springframework.org/schema/util/spring-util.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- The hybris platform provides one single Spring application context for beans located at the jalo layer. Each extension can add 
+		beans to this context by specifying them at this configuration file. You can use and/or redefine beans defined at configuration files 
+		of other extensions as well as adding new one. If you want to locate this file at a different location or want to use several files 
+		for better, structuring, please use the '<yourextension>.application-context' property at your project.properties file. There you can 
+		specify a comma separated list of files where first is tried to find a file per classpath and then per file system. If you want to 
+		configure beans for your web module please have a look at your web/webroot/WEB-INF/<extname>-web-spring.xml. -->
+
+	<!-- Example how to override a manager -->
+	<!-- <bean id="core.productManager" class="com.smartedit.personalization.jalo.SmarteditpersonalizationservicesProductManager" init-method="init" destroy-method="destroy" 
+		/> -->
+
+
+	<!-- Example how to configure the class to use for jalo session creation -->
+	<!-- <bean id="jalosession" class="de.hybris.platform.jalo.JaloSessionFactory"> <property name="targetClassName" value="com.smartedit.personalization.jalo.SmarteditpersonalizationservicesJaloSession"/> 
+		</bean> -->
+
+
+	<!-- Example how to override an item -->
+	<!-- <bean id="de.hybris.platform.jalo.product.Product" class="com.smartedit.personalization.jalo.SmarteditpersonalizationservicesProduct" scope="prototype" 
+		/> -->
+
+	<!-- Example how to register and use an AOP aspect Also see http://static.springframework.org/spring/docs/2.5.x/reference/aop.html -->
+
+	<!-- <bean id="smarteditpersonalizationservicesProfBean" class="com.smartedit.personalization.aop.SmarteditpersonalizationservicesProfilingAspect"/> <aop:config proxy-target-class="true"> 
+		<aop:aspect id="smarteditpersonalizationservicesProfAspect" ref="smarteditpersonalizationservicesProfBean" > <aop:pointcut id="profiledMethods" expression="execution(* 
+		getModificationTime(..))" /> <aop:around pointcut-ref="profiledMethods" method="profile" /> </aop:aspect> </aop:config> -->
+
+
+	<!-- some other examples of a pointcut that matches everything: <aop:pointcut id="profiledMethods" expression="bean(de.hybris.platform.jalo.user.Customer) 
+		&amp;&amp; !execution(* getPK(..))" /> <aop:pointcut id="profiledMethods" expression="execution(* *(..))" /> -->
+
+	<bean id="smarteditpersonalizationservicesSystemSetup" class="com.smartedit.personalization.setup.SmarteditpersonalizationservicesSystemSetup">
+		<!-- constructor arg injection example -->
+		<constructor-arg ref="smarteditpersonalizationservicesService" />
+	</bean>
+
+	<bean id="smarteditpersonalizationservicesService" class="com.smartedit.personalization.service.impl.DefaultSmarteditpersonalizationservicesService">
+		<!-- setter injection example -->
+		<property name="modelService" ref="modelService" />
+		<property name="mediaService" ref="mediaService" />
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+	</bean>
+	<!-- Translators -->
+	<bean id="assignUserToSegmentRuleTranslator" class="com.smartedit.personalization.rules.conditions.translators.AssignUserToSegmentRuleTranslator" />
+	<bean id="assignUserToSegmentRuleAddProductToCartTranslator" class="com.smartedit.personalization.rules.conditions.translators.AssignUserToSegmentRuleAddProductToCartTranslator" />
+	<bean id="assignUserToSegmentRuleBrowseCategoriesTranslator" class="com.smartedit.personalization.rules.conditions.translators.AssignUserToSegmentRuleBrowseCategoriesTranslator" />
+	<bean id="assignUserToSegmentRuleOrderValueGreaterThanTranslator" class="com.smartedit.personalization.rules.conditions.translators.AssignUserToSegmentRuleOrderValueGreaterThanTranslator" />
+
+	<!-- Actions -->
+	<bean id="assignUserToSegmentAction" class="com.smartedit.personalization.rules.actions.AssignUserToSegmentAction" />
+
+	<alias name="defaultSegmentRuleEngineService" alias="segmentRuleEngineService" />
+	<bean id="defaultSegmentRuleEngineService" parent="abstractBusinessService" class="com.smartedit.personalization.rules.services.impl.DefaultSegmentRuleEngineService">
+		<property name="commerceRuleEngineService" ref="commerceRuleEngineService" />
+		<property name="ruleEngineContextDao" ref="ruleEngineContextDao" />
+		<property name="defaultRuleEngineContextName" value="userSegmentRule-production-context" />
+		<property name="factContextFactory" ref="defaultRuleFactContextFactory" />
+	</bean>
+
+	<bean id="defaultRuleFactContextFactory" parent="defaultFactContextFactory">
+		<property name="raoProviders">
+			<map merge="true">
+				<entry key="USER_SEGMENT" value-ref="SegmentRuleRAOProviders" />
+			</map>
+		</property>
+	</bean>
+	<util:map id="SegmentRuleRAOProviders">
+		<entry key="de.hybris.platform.core.model.user.CustomerModel">
+			<util:list>
+				<ref bean="segmentRuleCustomerRaoProvider" />
+			</util:list>
+		</entry>
+		<entry key="de.hybris.platform.core.model.order.CartModel">
+			<util:list>
+				<ref bean="cartRAOProvider" />
+			</util:list>
+		</entry>
+		<entry key="de.hybris.platform.category.model.CategoryModel">
+			<util:list>
+				<ref bean="segmentRuleCategoryRaoProvider" />
+			</util:list>
+		</entry>
+		<entry key="de.hybris.platform.core.model.order.OrderModel">
+			<util:list>
+				<ref bean="segmentRuleOrderRaoProvider" />
+			</util:list>
+		</entry>
+	</util:map>
+
+	<alias name="defaultSegmentRuleCustomerRaoProvider" alias="segmentRuleCustomerRaoProvider" />
+	<bean id="defaultSegmentRuleCustomerRaoProvider" class="com.smartedit.personalization.rules.rao.provider.DefaultSegmentRuleCustomerRaoProvider">
+		<property name="customerRaoConverter" ref="customerRaoConverter"></property>
+		<property name="ruleEngineCalculationService" ref="ruleEngineCalculationService" />
+		<property name="factExtractorList" ref="customerRAOProviderExtractors" />
+	</bean>
+
+	<alias alias="customerRAOProviderExtractors" name="defaultCustomerRAOProviderExtractors" />
+	<util:list id="defaultCustomerRAOProviderExtractors" />
+
+	<alias name="defaultSegmentRuleCategoryRaoProvider" alias="segmentRuleCategoryRaoProvider" />
+	<bean id="defaultSegmentRuleCategoryRaoProvider" class="com.smartedit.personalization.rules.rao.provider.DefaultSegmentRuleCategoryRAOProvider">
+		<property name="categoryRaoConverter" ref="browsedCategoryRaoConverter"></property>
+		<property name="ruleEngineCalculationService" ref="ruleEngineCalculationService" />
+		<property name="factExtractorList" ref="categoryRaoProviderExtractors" />
+	</bean>
+
+	<alias name="defaultBrowsedCategoryRaoConverter" alias="browsedCategoryRaoConverter" />
+	<bean id="defaultBrowsedCategoryRaoConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.smartedit.personalization.data.BrowsedCategoryRAO" />
+		<property name="populators">
+			<list>
+				<ref bean="categoryRaoPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias alias="categoryRaoProviderExtractors" name="defaultCategoryRAOProviderExtractors" />
+	<util:list id="defaultCategoryRAOProviderExtractors" />
+
+	<alias name="defaultSegmentRuleOrderRaoProvider" alias="segmentRuleOrderRaoProvider" />
+	<bean id="defaultSegmentRuleOrderRaoProvider" class="com.smartedit.personalization.rules.rao.provider.DefaultSegmentRuleOrderRaoProvider">
+		<property name="orderRaoConverter" ref="orderRaoConverter"></property>
+		<property name="ruleEngineCalculationService" ref="ruleEngineCalculationService" />
+		<property name="factExtractorList" ref="orderRAOProviderExtractors" />
+	</bean>
+
+	<alias alias="orderRAOProviderExtractors" name="defaultOrderRAOProviderExtractors" />
+	<util:list id="defaultOrderRAOProviderExtractors" />
+
+
+	<alias name="defaultOrderRaoConverter" alias="orderRaoConverter" />
+	<bean id="defaultOrderRaoConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.ruleengineservices.rao.OrderRAO" />
+		<property name="populators">
+			<list>
+				<ref bean="orderRaoPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultOrderRaoPopulator" alias="orderRaoPopulator" />
+	<bean id="defaultOrderRaoPopulator" class="de.hybris.platform.ruleengineservices.converters.populator.OrderRaoPopulator">
+		<property name="discountConverter" ref="discountValueRaoConverter" />
+		<property name="entryConverter" ref="orderEntryRaoConverter" />
+		<property name="userConverter" ref="userRaoConverter" />
+		<property name="paymentModeConverter" ref="paymentModeRaoConverter" />
+	</bean>
+
+	<alias name="defaultCustomerRaoConverter" alias="customerRaoConverter" />
+	<bean id="defaultCustomerRaoConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="de.hybris.platform.ruleengineservices.rao.UserRAO" />
+		<property name="populators">
+			<list>
+				<ref bean="customerRaoPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultCustomerRaoPopulator" alias="customerRaoPopulator" />
+	<bean id="defaultCustomerRaoPopulator" class="com.smartedit.personalization.rules.converters.populators.CustomerRaoPopulator" parent="userRaoPopulator">
+	</bean>
+
+	<bean id="segmentRuleParameterValueMapper" class="com.smartedit.personalization.rules.strategies.impl.mapper.SegmentRuleParameterValueMapper">
+		<!-- <property name="cxSegmentService" ref="cxSegmentService" /> -->
+	</bean>
+
+	<bean id="segmentRuleParameterValueMapperDefinition" class="de.hybris.platform.ruleengineservices.rule.strategies.impl.RuleParameterValueMapperDefinition">
+		<property name="mapper" ref="segmentRuleParameterValueMapper" />
+		<property name="type" value="ItemType(CxSegment)" />
+	</bean>
+
+	<bean id="removeUserFromSegmentService" class="com.smartedit.personalization.rules.services.impl.DefaultUserToSegmentService" />
+
+	<bean id="removeUserFromSegmentsJob" class="com.smartedit.personalization.rules.cronjobs.RemoveUserFromSegmentsJob" autowire="byName" />
+
+	<bean id="customerAgeDynamicHandler" class="com.smartedit.personalization.rules.dynamic.attribute.handlers.CustomerAgeHandler" />
+
+</beans>

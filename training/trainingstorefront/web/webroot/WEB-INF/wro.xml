@@ -1,0 +1,300 @@
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<groups xmlns="http://www.isdc.ro/wro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.isdc.ro/wro wro.xsd">
+	
+	<import>classpath:wro_addons.xml</import>
+
+	<group name="alpha_responsive">
+		<css>/_ui/responsive/theme-alpha/css/style.css</css>
+	</group>
+
+	<group name="lambda_responsive">
+		<css>/_ui/responsive/theme-lambda/css/style.css</css>
+	</group>
+	
+	<group name="all_responsive">
+        
+		<!-- jquery -->
+		<js minimize="false">/_ui/responsive/common/js/jquery-2.1.1.min.js</js>
+		
+		<!-- bootstrap -->
+		<js>/_ui/responsive/common/bootstrap/dist/js/bootstrap.min.js</js>
+		
+		<!-- plugins -->
+		<js minimize="false">/_ui/responsive/common/js/enquire.min.js</js>
+		<js>/_ui/responsive/common/js/Imager.min.js</js>
+		<js>/_ui/responsive/common/js/jquery.blockUI-2.66.js</js>
+		<js minimize="false">/_ui/responsive/common/js/jquery.colorbox-min.js</js>
+		<js minimize="false">/_ui/responsive/common/js/jquery.form.min.js</js>
+		<js>/_ui/responsive/common/js/jquery.hoverIntent.js</js>
+		<js>/_ui/responsive/common/js/jquery.pstrength.custom-1.2.0.js</js>
+		<js>/_ui/responsive/common/js/jquery.syncheight.custom.js</js>
+		<js>/_ui/responsive/common/js/jquery.tabs.custom.js</js>
+		<js minimize="false">/_ui/responsive/common/js/jquery-ui-1.11.2.min.js</js>
+		<js>/_ui/responsive/common/js/jquery.zoom.custom.js</js>
+		<js>/_ui/responsive/common/js/owl.carousel.custom.js</js>
+		<js minimize="false">/_ui/responsive/common/js/jquery.tmpl-1.0.0pre.min.js</js>
+		<js minimize="false">/_ui/responsive/common/js/jquery.currencies.min.js</js>
+		
+		<!-- Custom ACC JS -->
+		<js>/_ui/responsive/common/js/acc.address.js</js>
+		<js>/_ui/responsive/common/js/acc.autocomplete.js</js>
+		<js>/_ui/responsive/common/js/acc.carousel.js</js>
+		<js>/_ui/responsive/common/js/acc.cart.js</js>
+		<js>/_ui/responsive/common/js/acc.cartitem.js</js>
+		<js>/_ui/responsive/common/js/acc.checkout.js</js>
+		<js>/_ui/responsive/common/js/acc.checkoutaddress.js</js>
+		<js>/_ui/responsive/common/js/acc.checkoutsteps.js</js>
+		<js>/_ui/responsive/common/js/acc.cms.js</js>
+		<js>/_ui/responsive/common/js/acc.colorbox.js</js>
+		<js>/_ui/responsive/common/js/acc.common.js</js>
+		<js>/_ui/responsive/common/js/acc.forgottenpassword.js</js>
+		<js>/_ui/responsive/common/js/acc.global.js</js>
+		<js>/_ui/responsive/common/js/acc.hopdebug.js</js>
+		<js>/_ui/responsive/common/js/acc.imagegallery.js</js>
+		<js>/_ui/responsive/common/js/acc.langcurrencyselector.js</js>
+		<js>/_ui/responsive/common/js/acc.minicart.js</js>
+		<js>/_ui/responsive/common/js/acc.navigation.js</js>
+		<js>/_ui/responsive/common/js/acc.order.js</js>
+		<js>/_ui/responsive/common/js/acc.paginationsort.js</js>
+		<js>/_ui/responsive/common/js/acc.payment.js</js>
+		<js>/_ui/responsive/common/js/acc.paymentDetails.js</js>
+		<js>/_ui/responsive/common/js/acc.pickupinstore.js</js>
+		<js>/_ui/responsive/common/js/acc.product.js</js>
+		<js>/_ui/responsive/common/js/acc.productDetail.js</js>
+		<js>/_ui/responsive/common/js/acc.quickview.js</js>
+		<js>/_ui/responsive/common/js/acc.quote.js</js>
+		<js>/_ui/responsive/common/js/acc.ratingstars.js</js>
+		<js>/_ui/responsive/common/js/acc.refinements.js</js>
+		<js>/_ui/responsive/common/js/acc.silentorderpost.js</js>
+		<js>/_ui/responsive/common/js/acc.tabs.js</js>
+		<js>/_ui/responsive/common/js/acc.termsandconditions.js</js>
+		<js>/_ui/responsive/common/js/acc.track.js</js>
+		<js>/_ui/responsive/common/js/acc.storefinder.js</js>
+		<js>/_ui/responsive/common/js/acc.futurelink.js</js>
+		<js>/_ui/responsive/common/js/acc.productorderform.js</js>
+		<js>/_ui/responsive/common/js/acc.savedcarts.js</js>
+		<js>/_ui/responsive/common/js/acc.multidgrid.js</js>
+		<js>/_ui/responsive/common/js/acc.quickorder.js</js>
+		<js>/_ui/responsive/common/js/acc.csv-import.js</js>
+		<js>/_ui/responsive/common/js/_autoload.js</js>
+		
+		<!-- Cms Action JavaScript files -->
+        <js>/_ui/responsive/common/js/cms/*.js</js>
+    </group>
+    
+    <group name="black_desktop">
+   		<css>/_ui/desktop/theme-black/css/changes.css</css>
+    </group>
+    
+    <group name="blue_desktop">
+   		<css>/_ui/desktop/theme-blue/css/changes.css</css>
+    </group>
+    
+    <group name="all_desktop">
+		<css>/_ui/desktop/common/css/jquery.colorbox-1.3.16.css</css>
+		<css>/_ui/desktop/common/css/jquery.bt-0.9.5.css</css>
+		<css>/_ui/desktop/common/blueprint/screen.css</css>
+		<css>/_ui/desktop/common/css/jquery.ui.stars-3.0.1.custom.css</css>
+		<css>/_ui/desktop/common/css/jquery.ui.autocomplete-1.8.18.css</css>
+		<css>/_ui/desktop/common/css/helper.css</css>
+		<css>/_ui/desktop/common/css/main.css</css>
+		<css>/_ui/desktop/common/css/buttons.css</css>
+		<css>/_ui/desktop/common/css/forms.css</css>
+		<css>/_ui/desktop/common/css/header.css</css>
+		<css>/_ui/desktop/common/css/miniCart.css</css>
+		<css>/_ui/desktop/common/css/siteSearch.css</css>
+		<css>/_ui/desktop/common/css/navigation.css</css>
+		<css>/_ui/desktop/common/css/breadcrumb.css</css>
+		<css>/_ui/desktop/common/css/facetNav.css</css>
+		<css>/_ui/desktop/common/css/paginationBar.css</css>
+		<css>/_ui/desktop/common/css/productGrid.css</css>
+		<css>/_ui/desktop/common/css/productList.css</css>
+		<css>/_ui/desktop/common/css/productDetails.css</css>
+		<css>/_ui/desktop/common/css/checkoutContentPanel.css</css>
+		<css>/_ui/desktop/common/css/checkoutOrderDetails.css</css>
+		<css>/_ui/desktop/common/css/checkoutProgress.css</css>
+		<css>/_ui/desktop/common/css/order.css</css>
+		<css>/_ui/desktop/common/css/orderTotals.css</css>
+		<css>/_ui/desktop/common/css/footer.css</css>
+		<css>/_ui/desktop/common/css/colorBox.css</css>
+        <css>/_ui/desktop/common/css/searchPOS.css</css>
+		<css>/_ui/desktop/common/css/userRegister.css</css>
+		<css>/_ui/desktop/common/css/userLogin.css</css>
+		<css>/_ui/desktop/common/css/userGuest.css</css>
+		<css>/_ui/desktop/common/css/account.css</css>
+		<css>/_ui/desktop/common/css/cartItems.css</css>
+        <css>/_ui/desktop/common/css/landingLayout2Page.css</css>
+		<css>/_ui/desktop/common/css/storeDetail.css</css>
+		<css>/_ui/desktop/common/css/storeFinder.css</css>
+		<css>/_ui/desktop/common/css/multi-d.css</css>
+		<css>/_ui/desktop/common/css/futureStock.css</css>
+        
+		<js minimize="false">/_ui/desktop/common/js/jquery-1.11.2.min.js</js>
+
+		<!-- j query query 2.1.7 -->
+		<js>/_ui/desktop/common/js/jquery.query-2.1.7.js</js>
+		<!-- jquery tabs dependencies -->
+		<js minimize="false">/_ui/desktop/common/js/jquery-ui-1.11.2.min.js</js>
+		<!-- j carousel -->
+		<js minimize="false">/_ui/desktop/common/js/jquery.jcarousel-0.2.8.min.js</js>
+		<!-- j query templates -->
+		<js minimize="false">/_ui/desktop/common/js/jquery.tmpl-1.0.0pre.min.js</js>
+		<!-- j query block UI -->
+		<js>/_ui/desktop/common/js/jquery.blockUI-2.70.js</js>
+		<!-- jquery migrator  -->
+		<js minimize="false">/_ui/desktop/common/js/jquery-migrate-1.2.1.min.js</js>
+		<!-- colorbox -->
+		<js>/_ui/desktop/common/js/jquery.colorbox.custom-1.3.16.js</js>
+		<!-- Slide Viewer -->
+		<js>/_ui/desktop/common/js/jquery.slideviewer.custom.1.2.js</js>
+		<js>/_ui/desktop/common/js/jquery.easing.1.3.js</js>
+		<!-- Wait for images -->
+		<js minimize="false">/_ui/desktop/common/js/jquery.waitforimages.min.js</js>
+		<!-- Scroll to -->
+		<js minimize="false">/_ui/desktop/common/js/jquery.scrollTo-1.4.2-min.js</js>
+		<js>/_ui/desktop/common/js/jquery.ui.stars-3.0.1.min.js</js>
+		<js>/_ui/desktop/common/js/jquery.form-3.09.js</js>
+		<!-- BeautyTips  -->
+		<js>/_ui/desktop/common/js/jquery.bgiframe-2.1.2.min.js</js>
+		<!--[if IE]><js>/_ui/desktop/common/js/excanvas-r3.compiled.js</js>-->
+		<js minimize="false">/_ui/desktop/common/js/jquery.bt-0.9.5-rc1.min.js</js>
+		<!-- PasswordStrength  -->
+		<js>/_ui/desktop/common/js/jquery.pstrength.custom-1.2.0.js</js>
+		
+		<!-- Custom ACC JS -->
+		<js>/_ui/desktop/common/js/acc.common.js</js>
+		<js>/_ui/desktop/common/js/acc.userlocation.js</js>
+		<js>/_ui/desktop/common/js/acc.track.js</js>
+		<js>/_ui/desktop/common/js/acc.cms.js</js>
+		<js>/_ui/desktop/common/js/acc.product.js</js>
+		<js>/_ui/desktop/common/js/acc.refinements.js</js>
+		<js>/_ui/desktop/common/js/acc.storefinder.js</js>
+		<js>/_ui/desktop/common/js/acc.carousel.js</js>
+		<js>/_ui/desktop/common/js/acc.autocomplete.js</js>
+		<js>/_ui/desktop/common/js/acc.pstrength.js</js>
+		<js>/_ui/desktop/common/js/acc.password.js</js>
+		<js>/_ui/desktop/common/js/acc.minicart.js</js>
+		<js>/_ui/desktop/common/js/acc.pickupinstore.js</js>
+		<js>/_ui/desktop/common/js/acc.langcurrencyselector.js</js>
+		<js>/_ui/desktop/common/js/acc.paginationsort.js</js>
+		
+		<js>/_ui/desktop/common/js/acc.checkout.js</js>
+		<js>/_ui/desktop/common/js/acc.checkoutaddress.js</js>
+		<js>/_ui/desktop/common/js/acc.checkoutcartdetails.js</js>
+		<js>/_ui/desktop/common/js/acc.checkoutpickupdetails.js</js>
+		<js>/_ui/desktop/common/js/acc.deliverymodedescription.js</js>
+		<js>/_ui/desktop/common/js/acc.hopdebug.js</js>
+		<js>/_ui/desktop/common/js/acc.payment.js</js>
+		<js>/_ui/desktop/common/js/acc.placeorder.js</js>
+		<js>/_ui/desktop/common/js/acc.removepaymentdetails.js</js>
+		<js>/_ui/desktop/common/js/acc.silentorderpost.js</js>
+		<js>/_ui/desktop/common/js/acc.termsandconditions.js</js>
+		<js>/_ui/desktop/common/js/acc.updatebillingaddress.js</js>
+		<js>/_ui/desktop/common/js/acc.cartremoveitem.js</js>
+		<js>/_ui/desktop/common/js/acc.cart.js</js>
+		
+		<js>/_ui/desktop/common/js/acc.address.js</js>
+		<js>/_ui/desktop/common/js/acc.refresh.js</js>
+		<js>/_ui/desktop/common/js/acc.stars.js</js>
+		<js>/_ui/desktop/common/js/acc.forgotpassword.js</js>
+		
+		<!-- accessible-tabs  -->
+		<js>/_ui/desktop/common/js/jquery.accessible-tabs-1.9.7.min.js</js>
+		<js>/_ui/desktop/common/js/acc.productDetail.js</js>
+		<js>/_ui/desktop/common/js/acc.producttabs.js</js>
+		
+		<!-- Multi-D -->
+		<js minimize="false">/_ui/desktop/common/js/jquery.currencies.min.js</js>
+		<js>/_ui/desktop/common/js/acc.productorderform.js</js>
+		<!-- Future Link -->
+		<js>/_ui/desktop/common/js/acc.futurelink.js</js>
+		
+		<!-- Cms Action JavaScript files -->		
+		<js>/_ui/desktop/common/js/cms/*.js</js>
+    </group>
+    
+    <group name="black_mobile">
+   		<css>/_ui/mobile/theme-black/css/changes.css</css>
+    </group>
+    
+    <group name="blue_mobile">
+   		<css>/_ui/mobile/theme-blue/css/changes.css</css>
+    </group>
+
+    <group name="css_mobile">
+    	<!-- colorbox CSS -->
+		<css>/_ui/mobile/common/css/colorbox.css</css>
+		<!-- our site css -->
+		<css>/_ui/mobile/common/css/common.css</css>
+		<css>/_ui/mobile/common/css/jquery.ui.stars.css</css>
+		<css>/_ui/mobile/common/css/jquery.mobile.structure-1.3.0.min.css</css>
+		<css>/_ui/mobile/common/css/jquery.mobile-1.3.0.accelerator-mobile.css</css>
+		<css>/_ui/mobile/common/css/mobile.css</css>
+		<css>/_ui/mobile/common/css/jquery.mobile.easydialog.css</css>
+		<css>/_ui/mobile/common/css/jquery.mobile.collapsiblelistview.hybris.css</css>
+	</group>
+
+	<group name="part1_mobile">
+    	<!-- jQuery -->
+		<js minimize="false">/_ui/mobile/common/js/jquery.1.7.1.min.js</js>
+		<js minimize="false">/_ui/mobile/common/js/jquery.tmpl.1.0.0pre.min.js</js>
+		<js minimize="false">/_ui/mobile/common/js/jquery-ui-1.11.2.min.js</js>
+	</group>
+
+	<group name="part2_mobile">
+		<js minimize="false">/_ui/mobile/common/js/jquery.mobile-1.3.0.min.js</js>
+		<js>/_ui/mobile/common/js/jquery.mobile.easydialog.js</js>
+		<js>/_ui/mobile/common/js/jquery.mobile.autocomplete.custom.js</js>
+		<js>/_ui/mobile/common/js/jquery.mobile.collapsiblelistview.hybris.js</js>
+		<js minimize="false">/_ui/mobile/common/js/jquery.ui.stars.min.3.0.1.js</js>
+		<js>/_ui/mobile/common/js/jquery.form.2.67.js</js>
+		<js>/_ui/mobile/common/js/jquery.colorbox-1.3.16.js</js>
+		
+		<js minimize="false">/_ui/mobile/common/js/jquery.imagesloaded.min.js</js>
+		<js>/_ui/mobile/common/js/jquery.cycle.all.2.9999.5.js</js>
+		
+		<!-- ACCMOB -->
+		<js>/_ui/mobile/common/js/accmob.common.js</js>
+		<js>/_ui/mobile/common/js/accmob.menu.js</js>
+		<js>/_ui/mobile/common/js/accmob.autocomplete.js</js>
+		<js>/_ui/mobile/common/js/accmob.address.js</js>
+		<js>/_ui/mobile/common/js/accmob.facets.js</js>
+		<js>/_ui/mobile/common/js/accmob.account.js</js>
+		<js>/_ui/mobile/common/js/accmob.forgotpassword.js</js>
+		<js>/_ui/mobile/common/js/accmob.cart.js</js>
+		<js>/_ui/mobile/common/js/accmob.cartremoveitem.js</js>
+		<js>/_ui/mobile/common/js/accmob.checkout.js</js>
+		<js>/_ui/mobile/common/js/accmob.pickupinstore.js</js>
+		<js>/_ui/mobile/common/js/accmob.storelisting.js</js>
+		<js>/_ui/mobile/common/js/accmob.product.js</js>
+		<js>/_ui/mobile/common/js/accmob.userlocation.js</js>
+		<js>/_ui/mobile/common/js/accmob.productlisting.js</js>
+		<js>/_ui/mobile/common/js/accmob.silentorderpost.js</js>
+		<js>/_ui/mobile/common/js/accmob.termsandconditions.js</js>
+		<js minimize="false">/_ui/mobile/common/js/waypoints.min.1.1.5.js</js>
+		<js>/_ui/mobile/common/js/accmob.placeorder.js</js>
+		<js>/_ui/mobile/common/js/accmob.messages.js</js>
+		<js>/_ui/mobile/common/js/accmob.hopdebug.js</js>
+		<js>/_ui/mobile/common/js/jquery.pstrength.custom-1.2.0.js</js>
+	</group>
+	
+	<group name="part3_mobile">
+		<js>/_ui/mobile/common/js/accmob.password.js</js>
+		
+		<!-- Cms Action JavaScript files -->
+        <js>/_ui/mobile/common/js/cms/*.js</js>
+		
+		<js minimize="false">/_ui/mobile/common/js/jquery.ui.touch-punch.min.0.2.2.js</js>
+    </group>
+
+</groups>       

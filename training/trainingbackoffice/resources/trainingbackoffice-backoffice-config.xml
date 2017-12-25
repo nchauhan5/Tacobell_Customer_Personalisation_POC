@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2017 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<config xmlns="http://www.hybris.com/cockpit/config">
+
+	<!-- trainingbackoffice UI configuration should be provided here -->
+
+	<!--<context component="component-code" module="trainingbackoffice">-->
+		<!--Please check documentation for code snippets for specific components-->
+	<!--</context>-->
+	<context component="explorer-tree" merge-by="module">
+		<n:explorer-tree xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+			<n:navigation-node id="cxnode">
+				<n:navigation-node id="cxconfignode">
+					<n:type-node code="SegmentSourceRule" id="hmc.type_tree_segmentsourcerule"/>
+				</n:navigation-node>
+			</n:navigation-node>
+		</n:explorer-tree>
+	</context>
+</config>

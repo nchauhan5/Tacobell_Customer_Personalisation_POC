@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- [y] hybris Platform Copyright (c) 2017 SAP SE or an SAP affiliate company. All rights reserved. This software is the confidential 
+	and proprietary information of SAP ("Confidential Information"). You shall not disclose such Confidential Information and shall use 
+	it only in accordance with the terms of the license agreement you entered into with SAP. -->
+<!-- ATTENTION: This is just an example file. You have to edit it according to your needs. -->
+
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="items.xsd">
+	<collectiontypes>
+		<collectiontype code="CxSegmentSet" elementtype="CxSegment" autocreate="true" generate="true" type="set" />
+	</collectiontypes>
+	<enumtypes>
+
+		<enumtype code="RuleType" autocreate="false" generate="true" dynamic="true">
+			<value code="USER_SEGMENT_RULE" />
+		</enumtype>
+
+		<enumtype code="FactContextType" autocreate="false" generate="false">
+			<value code="USER_SEGMENT" />
+		</enumtype>
+
+	</enumtypes>
+
+	<itemtypes>
+
+		<itemtype code="SegmentSourceRule" extends="SourceRule" jaloclass="com.smartedit.personalization.jalo.SegmentSourceRule" autocreate="true"
+			generate="true">
+			<attributes>
+				<!-- <attribute qualifier="excludeFromStorefrontDisplay" type="java.lang.Boolean"> <description> flag to indicate whether this 
+					promotion will be displayed in the storefront (e.g. product details page etc) </description> <persistence type="property" /> <defaultvalue>java.lang.Boolean.FALSE</defaultvalue> 
+					</attribute> -->
+			</attributes>
+		</itemtype>
+
+		<itemtype code="CxUserToSegment" autocreate="false" generate="false">
+			<attributes>
+				<attribute qualifier="isSegmentAttachedViaSegmentSourceRule" type="java.lang.Boolean">
+					<description>Check if the user was added to a segment via SegmentSourceRule</description>
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="CxSegment" jaloclass="de.hybris.platform.personalizationservices.jalo.CxSegment" autocreate="false"
+			generate="false">
+			<attributes>
+				<attribute qualifier="durationForAssociation" type="java.lang.Integer">
+					<description>Duration in days(Integer) till which user will be associated to the segment</description>
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+				<attribute qualifier="mutuallyExlusiveSegments" type="cxSegmentSet">
+					<description>Segments that are mutually exclusive from this segment.</description>
+					<modifiers optional="true" />
+					<persistence type="property" />
+				</attribute>
+			</attributes>
+		</itemtype>
+
+	</itemtypes>
+
+</items>

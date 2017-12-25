@@ -1,0 +1,9 @@
+#Ant properties
+#Fri Feb 17 11:34:33 CET 2017
+builddate=20170217 1132
+description=trainingfulfilmentprocess
+name=trainingfulfilmentprocess
+releasedate=20161216 2030
+vendor=hybris
+version=6.3.0.1
+version.api=6.3.0

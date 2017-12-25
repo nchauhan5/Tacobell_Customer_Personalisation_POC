@@ -1,0 +1,9 @@
+#Ant properties
+#Fri Feb 17 11:33:36 CET 2017
+builddate=20170217 1132
+description=trainingcore
+name=trainingcore
+releasedate=20161216 2030
+vendor=hybris
+version=6.3.0.1
+version.api=6.3.0

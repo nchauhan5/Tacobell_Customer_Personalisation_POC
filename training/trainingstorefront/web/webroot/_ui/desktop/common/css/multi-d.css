@@ -1,0 +1,382 @@
+/*
+## futureStock
+********************************************************************/
+
+
+#futureStockOverlay {
+	padding:0 20px 20px 20px;
+}
+
+
+#futureStockOverlay .headline{
+	border-bottom: 1px solid #bfbfbf;
+	font-size: 1.2em;
+	font-weight: bold;
+	height: 39px;
+	line-height: 39px;
+	text-transform: uppercase;
+	margin:0 0 20px 0;
+}
+
+
+#futureStockOverlay .description{
+	margin:0 0 20px 0;
+}
+
+
+
+#futureStockOverlay .product{
+
+}
+
+
+#futureStockOverlay .thumb{
+	float:left;
+	margin:0 20px 0 0;
+}
+
+
+#futureStockOverlay .details{
+	float:left;
+}
+
+
+#futureStockOverlay .orderList{
+	border:0;
+	padding:0;
+}
+
+
+
+/*
+	Order form tooltip
+*****************/
+span.future_tooltip {
+    position: relative;
+}
+span.future_tooltip a .tooltip_table {
+    display: none;
+    max-height: 82px;
+    overflow: auto;
+}
+span.future_tooltip a:hover {
+    font-color: #000000;
+}
+span.future_tooltip a:hover .tooltip_table {
+    color: #000000;
+    display: block;
+    font: 12px "Arial",sans-serif;
+    text-align: left;
+    text-decoration: none;                /*oms_error_message*/
+
+    background-color: #FFFFFF;
+    border: 1px solid #999999;
+    border-radius: 3px 3px 3px 3px;
+
+    margin-left: -38px;
+    margin-top: 6px;
+    margin-right: 20px;
+
+    right: -50px;
+    bottom: -5px;
+    height: auto;
+    width: 125px;
+    padding: 2px;
+    position: absolute;
+    z-index: 109;
+}
+.tooltip_title {
+	font-weight: bold;
+	margin-bottom: 2px;
+    padding: 1px 0 4px;
+	background-color: #dadada;
+}
+.tooltip_title, .tooltip_value {
+	width: 50px;
+	padding-left: 3px;
+	font-size: 10px;
+	color: #444444;
+    text-align: center;
+}
+.tooltip_value {
+	border-bottom: 1px solid #dadada;
+}
+.tooltip_table div {
+	float: left;
+}
+.oms_message_holder {
+    padding-left: 5px;
+    position: relative;
+    top: -15px;
+}
+
+
+/*
+	orderForm_grid_group
+*****************/
+
+.orderForm_grid_group img {
+    border: 1px solid #BACAD5;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.grid_three_dimensions tr td:first-child {
+    font-weight: bold;
+}
+
+.grid_three_dimensions {
+    width: auto !important;
+    background-color: #EEEEEE;
+    float: left;
+    margin-bottom: 0;
+}
+.single_grid_three_dimensions {
+    margin-bottom: 10px;
+    overflow: auto;
+    width: 950px;
+}
+.orderList .single_grid_three_dimensions {
+    width: 908px;
+}
+.accountContentPane .orderList .single_grid_three_dimensions {
+    width: 748px;
+}
+.grid_three_dimensions tbody tr td {
+    width: 65px;
+    padding: 5px 3px;
+    text-align: center;
+    border-left: 1px solid #FFFFFF;
+    border-top: 1px solid #FFFFFF;
+    background-color: #FFFFFF;
+}
+.grid_three_dimensions tbody tr:first-child td:first-child {
+    border-top: none;
+}
+.grid_three_dimensions tbody tr td:first-child {
+    border-left: none;
+    color: #333333;
+    text-transform: uppercase;
+}
+.grid_three_dimensions tr td:first-child,  #content .grid_three_dimensions tr th {
+    background-color: #EEEEEE;
+    text-align: center;
+    text-transform: uppercase;
+}
+.grid_three_dimensions tr td input{
+    width: 20px;
+    font-size: 10px;
+    text-align: center;
+}
+.grid_three_dimensions tr .in-stock {
+    background-color: #66CC99;
+}
+.grid_three_dimensions tr .out-of-stock {
+    background-color: #FF6633;
+}
+.grid_three_dimensions tr .future-stock {
+    background-color: #FFCC33;
+}
+.orderForm_subHeader {
+    float: right;
+    margin-bottom: 15px;
+    text-align: right;
+    width: 220px;
+}
+.orderForm_grid_group {
+	clear: both;
+
+    padding: 0 0 10px;
+    margin-bottom: 25px;
+    width: 100%;
+
+	border-bottom: 1px solid #bfbfbf;
+
+}
+
+
+
+#colorbox .cboxGrid{
+	padding: 25px;
+}
+
+
+.subHeader_value {
+    display: inline-block;
+    text-align: right;
+    width: 70px;
+}
+#subTotal__label,
+#subtotal {
+    font-weight: bold;
+    font-size: 12px;
+}
+.swatch_legend {
+    display: block;
+    font-size: 11px;
+    text-align: right;
+    margin: 20px 0 0;
+}
+.legend_label {
+    margin-left: 10px;
+    text-transform: capitalize;
+}
+.clr_inStock {
+    background-color: #66CC99;
+    display: inline-block;
+    height: 11px;
+    position: relative;
+    top: 1px;
+    width: 25px;
+}
+.clr_future {
+    background-color: #ffcc33;
+    display: inline-block;
+    height: 11px;
+    position: relative;
+    top: 1px;
+    width: 25px;
+}
+.clr_outStock {
+    background-color: #ff6633;
+    display: inline-block;
+    height: 11px;
+    position: relative;
+    top: 1px;
+    width: 25px;
+}
+
+
+
+#js-add-product-ids{
+	display:none;
+}
+
+
+.productMainLink.gridGroup{
+	border:0;
+}
+
+
+#productOrderButton{
+
+	font-size: 1em;
+	height: 37px;
+	padding: 0;
+	width: 49%;
+	margin:0;
+	margin-top:9px;
+}
+
+
+.productDescription .variantOptions {
+	padding: 5px 0;
+	line-height:2.5em;
+	color:#929292;
+}
+
+.productDescription  .variantName {
+	float:left;
+	width: 57px;
+}
+
+.productDescription  ul.variantList {
+	float:left;
+}
+
+.productDescription ul.variantList li{
+	float:left;
+	margin:0 10px 0 0;
+}
+
+
+
+.productDescription .futureStockLink{
+	display:block;
+	text-align:right;
+}
+
+
+
+.yCmsComponent.login-info .content{
+	border: 1px solid #bfbfbf;
+	margin: 20px 0 0;
+	padding: 20px;
+}
+
+
+
+.volume-prices{
+	margin:10px 0;
+}
+
+
+.volume-prices th,
+.volume-prices td{
+	padding: 0 5px;
+}
+
+
+
+/*
+## orderFormTotal
+********************************************************************/
+
+
+.orderFormTotal .orderForm {
+
+	border: 1px solid #bfbfbf;
+	margin:0 0 20px 0;
+	padding: 0 10px 10px;
+}
+
+
+.orderFormTotal .orderForm .headline{
+	border-bottom: 1px solid #bfbfbf;
+	font-size: 1.2em;
+	font-weight: bold;
+	height: 30px;
+	line-height:30px;
+	text-transform: uppercase;
+	margin:0  0 10px 0 ;
+}
+
+
+
+
+
+
+
+.orderFormHeader .pd_name{
+	border-bottom: 1px solid #979797;
+    color: #000000;
+    font-size: 1.2em;
+    height: 25px;
+	line-height:25px;
+    font-weight: bold;
+    padding: 0 0 5px;
+    margin-bottom: 0.5em;
+}
+
+
+.orderFormHeader .big-price{
+	color: #303030;
+    font-size: 1.417em;
+    padding: 0 0 10px 10px;
+}
+
+
+
+
+
+.control-group fieldset input[type="checkbox"]{
+	float: left;
+}
+
+
+
+
+
+#cboxLoadedContent form.add_to_cart_order_form{
+	padding: 20px;
+}
